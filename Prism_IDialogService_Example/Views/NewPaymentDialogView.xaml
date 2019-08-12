@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="Prism_IDialogService_Example.Views.NewPaymentDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Prism_IDialogService_Example.Views"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="300">
+    <Grid Height="250" Width="300">
+        <telerik:RadDatePicker x:Name="DpPaymentDate" 
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               DisplayDateStart="2019-01-01"
+                               SelectedDate="{Binding Payment.PaymentDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <telerik:RadDatePicker x:Name="DpPaymentEndDate" 
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"
+                               DisplayDateStart="2019-01-01"
+                               Margin="0,25,0,0"
+                               SelectedDate="{Binding Payment.PaymentEndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <telerik:RadMaskedCurrencyInput x:Name="MciAmountOwed"
+                                        Culture="nl-BE"
+                                        Mask="#5.2"
+                                        TextMode="PlainText"
+                                        Margin="0,50,0,0"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Left"
+                                        Value="{Binding Payment.AmountOwed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <telerik:RadWatermarkTextBox x:Name="WmtbNote"
+                                     WatermarkContent="Beschrijving"
+                                     VerticalAlignment="Stretch"
+                                     HorizontalAlignment="Stretch"
+                                     Margin="0,75,0,45"
+                                     Text="{Binding Payment.Note, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="40">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <telerik:RadButton x:Name="BtnOk"
+                               Grid.Column="0"
+                               Margin="0,0,5,0"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Stretch" 
+                           Content="Bevestig"
+                           Command="{Binding ConfirmDialog}"/>
+
+            <telerik:RadButton x:Name="BtnCancel"
+                               Grid.Column="1"
+                               Margin="5,0,0,0"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Stretch" 
+                           Content="Annuleer"
+                           Command="{Binding CancelDialog}"/>
+        </Grid>
+
+
+    </Grid>
+</UserControl>
